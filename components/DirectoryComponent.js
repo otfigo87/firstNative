@@ -15,9 +15,9 @@ class Directory extends Component {
 
     render(){
         const { navigate } = this.props.navigation;
+
         const renderDirectoryItem = ({item}) => {
-        
-            return(
+          return(
             <ListItem
                 title={item.name}
                 subtitle={item.description}
@@ -26,6 +26,7 @@ class Directory extends Component {
             />    
         )
     }
+    
     return (
         <FlatList 
                 data = {this.state.campsites}
