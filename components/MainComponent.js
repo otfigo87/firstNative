@@ -5,6 +5,7 @@ import CampsiteInfo from './CampsiteInfoComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
 import Reservation from './ReservationComponent';
+import Favorites from './FavoritesComponent';
 import { View, Platform, StyleSheet, Text, ScrollView, Image } from 'react-native';
 import Constants from 'expo-constants';
 import { createStackNavigator} from 'react-navigation-stack';
@@ -122,6 +123,25 @@ const ReservationNavigator = createStackNavigator(
     }
 )
 
+const FavoritesNavigator = createStackNavigator(
+    {
+        Favorites: {screen: Favorites}
+    },
+    {
+        defaultNavigationOptions: ({navigation}) => ( {
+            headerStyle: { backgroundColor: '#5637dd'},
+            headerTintColor: '#fff',
+            headerTitleStyle: { color: '#fff'},
+            headerLeft: <Icon 
+                              name="heart"
+                              type="font-awesome"
+                              iconStyle={styles.stackIcon}
+                              onPress={() => navigation.toggleDrawer()}
+                            />
+        })
+    }
+)
+
 //////////////Drawer
 
 const CustomDrawerContentComponent = props => (
@@ -176,7 +196,18 @@ const MainNavigator = createDrawerNavigator(
                                         color={tintColor}
                     
                     />)
-               }},       
+               }}, 
+        Favorites: {screen: FavoritesNavigator,
+                    navigationOptions: {
+                      drawerLabel:'My Favorites',  
+                      drawerIcon: ({tintColor}) => (<Icon
+                                        name="heart"
+                                        type="font-awesome"
+                                        size={24}
+                                        color={tintColor}
+                    
+                    />)
+               }},                    
         About: {screen: AboutNavigator,
                 navigationOptions: {
                     drawerLabel: "About Us",
