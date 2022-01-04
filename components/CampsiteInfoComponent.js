@@ -22,13 +22,17 @@ const RenderCampsite = ({campsite, favorite, markFavorite, onShowModal}) => {
 
     const view = React.createRef();
 
+    const recognizeComment = ({dx}) => (dx > 200) ? true : false;
+
     const recognizeDrag = ({dx}) => (dx < -200) ? true : false;
 
     const panResponder = PanResponder.create({
+
         onStartShouldSetPanResponder: () => true,
         onPanResponderGrant: () => { view.current.rubberBand(1000)},
         onPanResponderEnd: (e, gestureState) => {
             console.log('pan responder end', gestureState);
+
             if (recognizeDrag(gestureState)) {
                 Alert.alert(
                     'Add Favorite',
@@ -48,6 +52,8 @@ const RenderCampsite = ({campsite, favorite, markFavorite, onShowModal}) => {
                     { cancelable: false }
 
                 );
+            } else if(recognizeComment(gestureState)) {
+                onShowModal();
             }
             return true;
         }
