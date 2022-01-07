@@ -6,7 +6,7 @@ import Contact from './ContactComponent';
 import About from './AboutComponent';
 import Reservation from './ReservationComponent';
 import Favorites from './FavoritesComponent';
-import Login from './LoginComponent'
+import LoginTab from './LoginComponent'
 import { View, Platform, StyleSheet, Text, ScrollView, Image } from 'react-native';
 import Constants from 'expo-constants';
 import { createStackNavigator} from 'react-navigation-stack';
@@ -145,7 +145,7 @@ const FavoritesNavigator = createStackNavigator(
 
 const LoginNavigator = createStackNavigator(
     {
-        Login: {screen: Login}
+        Login: {screen: LoginTab}
     },
     {
         defaultNavigationOptions: ({navigation}) => ( {
